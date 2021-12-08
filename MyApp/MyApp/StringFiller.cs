@@ -42,7 +42,7 @@ namespace MyApp
                                                string output,
                                                List<char> text,
                                                int j)
-            => output.Length <= length
+            => output.Count() <= length
                 ? text[j].ToString()
                 : "";
     }

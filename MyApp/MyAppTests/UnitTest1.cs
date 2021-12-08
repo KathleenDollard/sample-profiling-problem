@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyApp;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyAppTests
@@ -8,6 +9,48 @@ namespace MyAppTests
     [TestClass]
     public class UnitTest1
     {
+        [TestMethod]
+        public void WhenIsLoopTopExecuted()
+        {
+            var testLoopCounter = 0;
+            var testTopCounter = 0;
+            var length = 100;
+            var text = "Hello, Las Vegas".ToList();
+
+            for (var i = 0; i < (GetRepeatCount(length, text)); i++)
+            {
+                testLoopCounter++;
+            }
+
+            Assert.IsTrue(false);
+
+            int GetRepeatCount(int length, List<char> text)
+            {
+                testTopCounter++;
+                return length >= text.Count()
+                                         ? length / text.Count()
+                                         : 1;
+            }
+        }
+
+        [TestMethod]
+        public void HowManyTimeLinqExecutes()
+        {
+            var testLoopCounter = 0;
+
+            var list = Enumerable.Range(1, 10);
+            var list2 = list.Where(x=> DBAccessById(x)).ToList();
+
+            Assert.IsTrue(false);
+
+            bool DBAccessById(int i)
+            {
+                testLoopCounter++;
+                return true;
+            }
+        }
+
+
         [TestMethod]
         public void ShortInShortOut()
         {
